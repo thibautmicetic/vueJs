@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="action">Clique ici</button>
+            <p @click="compteur++">{{ compteur }}</p>
+            <input
+                type="text"
+                @keyup.enter="liste.push($refs['input'].value)"
+                ref="input"
+                v-model="saisie"
+                />
+                <button @click="liste.splice(index, 1)">Supprimer</button>
+            <ul>
+                <li v-for="(item, index) in liste">{{item}}</li>
+            </ul>
+
+            
+        </div>
+
+        <script>
+            const { createApp } = Vue
+
+            createApp({
+                mounted() {
+                    console.log('Ding ! 🍪 Votre code fonctionne !')
+                },
+                data() {
+                    return {
+                        saisie: "",
+                        compteur: 0,
+                        liste: ["Item 1", "Item 2", "Item 3"]
+                    }
+                },
+                methods: {
+                    action() {
+                        alert("🎉 Bravo 🎉");
+                        this.liste.push(prompt("Entrer une valeur"));
+                    }
+                }
+            }).mount('#app')
+        </script>
+    </body>
+</html>
